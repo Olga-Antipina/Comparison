@@ -24,6 +24,10 @@ td {
   z-index: 2;
 }
 
-.hiddenModal {
+.hidden_modal {
   visibility: hidden;
+}
+
+.hidden_found_phone {
+  display: none;
 }

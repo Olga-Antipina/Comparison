@@ -1,6 +1,7 @@
 export const SET_QUANTITY = 'SET_QUANTITY';
 export const SET_HIDDEN_FLAG = 'SET_HIDDEN_FLAG';
 export const SET_VISIBLE_VALUE = 'SET_VISIBLE_VALUE';
+export const SET_SEARCH = 'SET_SEARCH';
 
 export const setQuantity = (quantity) => ({
     type: SET_QUANTITY,
@@ -15,4 +16,9 @@ export const setHiddenFlag = (hiddenFlag) => ({
 export const setVisibleValue = (visibleValue) => ({
     type: SET_VISIBLE_VALUE,
     visibleValue,
+});
+
+export const setSearch = (search) => ({
+    type: SET_SEARCH,
+    search,
 });

@@ -20,7 +20,7 @@ export const Specifications = () => {
         withComponent.forEach((el) => {
             if (el.nextSibling === event.currentTarget) {
                 el.append(forModal);
-                forModal.classList.remove('hiddenModal');
+                forModal.classList.remove('hidden_modal');
             };
         });
     };
@@ -28,7 +28,7 @@ export const Specifications = () => {
     return (
         <div>
             <div className='container'>
-                <div className='for_modal hiddenModal'>
+                <div className='for_modal hidden_modal'>
                     <HiddenPhones />
                 </div>
             </div>

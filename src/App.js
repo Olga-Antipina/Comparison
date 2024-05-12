@@ -20,7 +20,7 @@ function App() {
     dispatch(setHiddenFlag(hiddenFlag));
     const container = document.querySelector('.container');
     const forModal = document.querySelector('.for_modal');
-    forModal.classList.add('hiddenModal');
+    forModal.classList.add('hidden_modal');
     container.append(forModal);
   };
 

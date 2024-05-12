@@ -3,6 +3,7 @@ import { selectHiddenFlag, selectQuantity, selectVisibleValue } from '../store/c
 import { selectPhones } from '../store/phones/phones-selectors';
 import { setHiddenFlag } from '../store/controls/controls-actions';
 import { addPhones } from '../store/phones/phones-actions';
+import { Search } from './Search';
 
 export const HiddenPhones = () => {
     const dispatch = useDispatch();
@@ -11,7 +12,7 @@ export const HiddenPhones = () => {
     const hiddenFlag = useSelector(selectHiddenFlag);
     const visValue = useSelector((state) => selectVisibleValue(state));
 
-    const lalala = (event) => {
+    const changePhonesClick = (event) => {
         const changeVisiblePhones = phones.visiblePhones.map((el) => {
             if (el.name === visValue) {
                 return phones.hiddenPhones.filter((i) => i.name === event.currentTarget.value)[0];
@@ -26,20 +27,21 @@ export const HiddenPhones = () => {
                 return el;
             };
         });
-        const ar = changeVisiblePhones.concat(changeHiddenPhones);
-        dispatch(addPhones(ar));
+        const newHidPhones = changeVisiblePhones.concat(changeHiddenPhones);
+        dispatch(addPhones(newHidPhones));
         dispatch(setHiddenFlag(hiddenFlag));
         const container = document.querySelector('.container');
         const forModal = document.querySelector('.for_modal');
-        forModal.classList.add('hiddenModal');
+        forModal.classList.add('hidden_modal');
         container.append(forModal);
     };
 
     return (
         <div className='modal'>
+            {quantity < 3 && <Search />}
             {phones.hiddenPhones.map((item) => {
-                return <div key={item.name}>
-                    <button onClick={lalala} value={item.name}>тыц</button>
+                return <div key={item.name} className='hidden_phone'>
+                    <button onClick={changePhonesClick} value={item.name}>тыц</button>
                     <span>
                         <img src={item.img} alt={item.name} />
                         {item.name}
@@ -47,5 +49,5 @@ export const HiddenPhones = () => {
                 </div>
             })}
         </div>
-    )
+    );
 };
