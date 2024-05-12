@@ -5,24 +5,23 @@ import { addPhones } from './store/phones/phones-actions';
 import data from './mockup/data.json';
 import { Specifications } from './components/Specifications';
 import { Quantity } from './components/Quantity';
-import { selectHiddenPhones } from './store/controls/controls-selectors';
-import { setHiddenPhones } from './store/controls/controls-actions';
+import { selectHiddenFlag } from './store/controls/controls-selectors';
+import { setHiddenFlag } from './store/controls/controls-actions';
 
 function App() {
-
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(addPhones(data))
-  }, [dispatch]);
+  const hiddenFlag = useSelector(selectHiddenFlag);
 
-  const hiddenFlag = useSelector(selectHiddenPhones);
+  useEffect(() => {
+    dispatch(addPhones(data));
+  }, []);
 
   const clickVisiblePhones = () => {
-    dispatch(setHiddenPhones(hiddenFlag));
+    dispatch(setHiddenFlag(hiddenFlag));
     const container = document.querySelector('.container');
     const forModal = document.querySelector('.for_modal');
     forModal.classList.add('hiddenModal');
-    container.append(forModal);    
+    container.append(forModal);
   };
 
   return (

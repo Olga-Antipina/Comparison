@@ -1,3 +1,5 @@
 export const selectQuantity = (state) => state.controls.quantity;
 
-export const selectHiddenPhones = (state) => state.controls.hiddenFlag;
+export const selectHiddenFlag = (state) => state.controls.hiddenFlag;
+
+export const selectVisibleValue = (state) => state.controls.visibleValue;
