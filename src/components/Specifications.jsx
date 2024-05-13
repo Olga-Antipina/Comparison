@@ -7,7 +7,7 @@ import { HiddenPhones } from './HiddenPhones';
 
 export const Specifications = () => {
     const dispatch = useDispatch();
-    const quantity = useSelector((state) => selectQuantity(state));    
+    const quantity = useSelector((state) => selectQuantity(state));
     const phones = useSelector((state) => selectPhones(state, { quantity }));
     const hiddenFlag = useSelector(selectHiddenFlag);
     const quantityAllPhones = useSelector((state) => selectQuantityAllPhones(state));
@@ -25,6 +25,24 @@ export const Specifications = () => {
         });
     };
 
+    const checkComparison = () => {
+        const checkbox = document.querySelector('#comparison');
+        const specifications = document.querySelectorAll('.specification');
+        if (!!checkbox.checked) {
+            specifications.forEach((el) => {
+                const children = [];
+                for (let i = 1; i < el.children.length; i++) {
+                    children.push(el.children[i].textContent);
+                };
+                if (!!children.every((c) => c === el.children[1].textContent)) {
+                    el.classList.add('hidden_specification');
+                };
+            });
+        } else {
+            specifications.forEach((el) => el.classList.remove('hidden_specification'));
+        };
+    };
+
     return (
         <div>
             <div className='container'>
@@ -36,7 +54,8 @@ export const Specifications = () => {
                 <thead>
                     <tr>
                         <th>
-
+                            <input type='checkbox' id="comparison" onChange={checkComparison} />
+                            <label htmlFor="comparison">Показать различия</label>
                         </th>
                         {phones.visiblePhones.map((item) => {
                             return <th key={item.name}>
@@ -54,61 +73,61 @@ export const Specifications = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr className='specification'>
                         <td>ПРОИЗВОДИТЕЛЬ</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{item.company}</td>
                         })}
                     </tr>
-                    <tr>
+                    <tr className='specification'>
                         <td>ГОД РЕЛИЗА</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{item.release}</td>
                         })}
                     </tr>
-                    <tr>
+                    <tr className='specification'>
                         <td>ДИАГОНАЛЬ ЭКРАНА (ДЮЙМ)</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{item.diagonal}</td>
                         })}
                     </tr>
-                    <tr>
+                    <tr className='specification'>
                         <td>СТРАНА-ПРОИЗВОДИТЕЛЬ</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{item.country}</td>
                         })}
                     </tr>
-                    <tr>
+                    <tr className='specification'>
                         <td>ОБЪЁМ ПАМЯТИ</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{item.storage}</td>
                         })}
                     </tr>
-                    <tr>
+                    <tr className='specification'>
                         <td>ЧАСТОТА ОБНОВЛЕНИЯ ЭКРАНА</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{item.refresh}</td>
                         })}
                     </tr>
-                    <tr>
+                    <tr className='specification'>
                         <td>NFC</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{String(item.NFC)}</td>
                         })}
                     </tr>
-                    <tr>
+                    <tr className='specification'>
                         <td>ПОДДЕРЖКА ESIM</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{String(item.ESIM)}</td>
                         })}
                     </tr>
-                    <tr>
+                    <tr className='specification'>
                         <td>ПОДДЕРЖКА БЕСПРОВОДНОЙ ЗАРЯДКИ</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{String(item.wirelessCharging)}</td>
                         })}
                     </tr>
-                    <tr>
+                    <tr className='specification'>
                         <td>СТОИМОСТЬ</td>
                         {phones.visiblePhones.map((item) => {
                             return <td key={item.name}>{item.cost}</td>

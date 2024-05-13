@@ -7,9 +7,15 @@ export const Quantity = () => {
 
     const dispatch = useDispatch();
     const quantityAllPhones = useSelector((state) => selectQuantityAllPhones(state));
+
     const handleClick = (event) => {
         dispatch(setQuantity(event.target.value));
+        const specifications = document.querySelectorAll('.specification');
+        specifications.forEach((el) => el.classList.remove('hidden_specification'));
+        const checkbox = document.querySelector('#comparison');
+        checkbox.checked = false;
     };
+
     const allButtonsArr = [];
     for (let i = 2; i <= quantityAllPhones; i++) {
         allButtonsArr.push(i);

@@ -5,7 +5,6 @@ const initialState = {
     hiddenFlag: false,
     visibleValue: '',
     search: '',
-    comparison: false,
 };
 
 export const controlsReducer = (state = initialState, action) => {

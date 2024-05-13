@@ -34,11 +34,15 @@ export const HiddenPhones = () => {
         const forModal = document.querySelector('.for_modal');
         forModal.classList.add('hidden_modal');
         container.append(forModal);
+        const specifications = document.querySelectorAll('.specification');
+        specifications.forEach((el) => el.classList.remove('hidden_specification'));
+        const checkbox = document.querySelector('#comparison');
+        checkbox.checked = false;
     };
 
     return (
         <div className='modal'>
-            {quantity < 3 && <Search />}
+            {phones.hiddenPhones.length > 3 && <Search />}
             {phones.hiddenPhones.map((item) => {
                 return <div key={item.name} className='hidden_phone'>
                     <button onClick={changePhonesClick} value={item.name}>тыц</button>

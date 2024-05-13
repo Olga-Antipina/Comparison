@@ -28,6 +28,7 @@ td {
   visibility: hidden;
 }
 
-.hidden_found_phone {
+.hidden_found_phone,
+.hidden_specification {
   display: none;
 }

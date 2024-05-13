@@ -10,26 +10,36 @@ export const Search = () => {
     const hiddenFlag = useSelector(selectHiddenFlag);
 
     useEffect(() => {
-        const hidFoundPhones = document.querySelectorAll('.hidden_phone');
-        hidFoundPhones.forEach((el) => {
+        const hidPhones = document.querySelectorAll('.hidden_phone');
+        const notFound = document.querySelector('#not_found');
+        hidPhones.forEach((el) => {
             if (!el.firstChild.value.toLowerCase().includes(search.toLowerCase())) {
                 el.classList.add('hidden_found_phone');
             } else {
                 el.classList.remove('hidden_found_phone');
-            };
-            if (!hiddenFlag) {
-                dispatch(setSearch(''));
+                notFound.textContent = ''
             };
         });
+        const hidFoundPhones = document.querySelectorAll('.hidden_found_phone');
+        if (!!search) {
+            hidFoundPhones.length === hidPhones.length ? notFound.textContent = 'Товар не найден' : notFound.textContent = '';
+        }
+        if (!hiddenFlag) {
+            dispatch(setSearch(''));
+        };
     }, [search, hiddenFlag]);
 
     const handleSearch = (event) => {
         dispatch(setSearch(event.target.value));
+        if (!event.target.value) {
+            dispatch(setSearch(''));
+        };
     };
 
     return (
         <div>
             <input type="search" placeholder="Поиск" value={search} onChange={handleSearch} />
+            <div id="not_found"></div>
         </div>
     );
 };
