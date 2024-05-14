@@ -4,6 +4,8 @@ import { selectPhones } from '../store/phones/phones-selectors';
 import { setHiddenFlag } from '../store/controls/controls-actions';
 import { addPhones } from '../store/phones/phones-actions';
 import { Search } from './Search';
+import { ReactComponent as Change } from '../assets/change.svg';
+
 
 export const HiddenPhones = () => {
     const dispatch = useDispatch();
@@ -27,31 +29,45 @@ export const HiddenPhones = () => {
                 return el;
             };
         });
+
         const newHidPhones = changeVisiblePhones.concat(changeHiddenPhones);
+
         dispatch(addPhones(newHidPhones));
         dispatch(setHiddenFlag(hiddenFlag));
+        
         const container = document.querySelector('.container');
         const forModal = document.querySelector('.for_modal');
         forModal.classList.add('hidden_modal');
         container.append(forModal);
+        
         const specifications = document.querySelectorAll('.specification');
         specifications.forEach((el) => el.classList.remove('hidden_specification'));
         const checkbox = document.querySelector('#comparison');
         checkbox.checked = false;
     };
 
+    const styles = () => {
+        if (phones.hiddenPhones.length <= 3) {
+            return { height: 100 + '%', marginTop: 20 + 'px' };
+        };
+    };
+
     return (
         <div className='modal'>
-            {phones.hiddenPhones.length > 3 && <Search />}
-            {phones.hiddenPhones.map((item) => {
-                return <div key={item.name} className='hidden_phone'>
-                    <button onClick={changePhonesClick} value={item.name}>тыц</button>
-                    <span>
-                        <img src={item.img} alt={item.name} />
-                        {item.name}
-                    </span>
-                </div>
-            })}
+            <div className='in_modal' style={styles()}>
+                {phones.hiddenPhones.length > 3 && <Search />}
+                {phones.hiddenPhones.map((item) => {
+                    return <div key={item.name} className='hidden_phone'>
+                        <button onClick={changePhonesClick} value={item.name}><Change /></button>
+                        <div className='phone_min'>
+                            <div className='phone_min_container'>
+                                <img src={item.img} alt={item.name} className='phone_img_min' />
+                            </div>
+                            <div>{item.name}</div>
+                        </div>
+                    </div>
+                })}
+            </div>
         </div>
     );
 };

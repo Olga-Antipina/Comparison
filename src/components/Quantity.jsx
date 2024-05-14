@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setQuantity } from "../store/controls/controls-actions";
 import { selectQuantityAllPhones } from "../store/phones/phones-selectors";
+import { selectQuantity } from "../store/controls/controls-selectors";
 
 
 export const Quantity = () => {
-
     const dispatch = useDispatch();
     const quantityAllPhones = useSelector((state) => selectQuantityAllPhones(state));
+    const quantity = useSelector((state) => selectQuantity(state));
 
     const handleClick = (event) => {
         dispatch(setQuantity(event.target.value));
@@ -22,15 +23,15 @@ export const Quantity = () => {
     };
 
     return (
-        <div>
-            <span>Смартфоны</span>
+        <div className="quantity">
+            <div id="quantity_title">Смартфоны</div>
             {quantityAllPhones > 2 &&
-                <span>
+                <div id="quantity_buttons">
                     Отобразить товары:
                     {allButtonsArr.map((item) => {
-                        return <button onClick={handleClick} key={item} value={item}>{item}</button>
+                        return <button onClick={handleClick} key={item} value={item} className={item.toString() === quantity.toString() ? "quantity_button select_button" : "quantity_button"}>{item}</button>
                     })}
-                </span>
+                </div>
             }
         </div>
     )
