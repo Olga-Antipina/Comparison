@@ -7,7 +7,7 @@ const initialState = {
     search: '',
 };
 
-export const controlsReducer = (state = initialState, action) => {
+export const controlsReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case SET_QUANTITY:
             return {

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectHiddenFlag, selectSearch } from "../store/controls/controls-selectors";
 import { setSearch } from "../store/controls/controls-actions";
 import { useEffect } from "react";
+import React from 'react';
 
 
 export const Search = () => {
@@ -10,9 +11,9 @@ export const Search = () => {
     const hiddenFlag = useSelector(selectHiddenFlag);
 
     useEffect(() => {
-        const hidPhones = document.querySelectorAll('.hidden_phone');
-        const notFound = document.querySelector('#not_found');
-        hidPhones.forEach((el) => {
+        const hidPhones = document.querySelectorAll('.hidden_phone') as NodeList;
+        const notFound = document.querySelector('#not_found') as HTMLElement;
+        hidPhones.forEach((el: any) => {
             if (!el.firstChild.value.toLowerCase().includes(search.toLowerCase())) {
                 el.classList.add('hidden_found_phone');
             } else {
@@ -29,7 +30,7 @@ export const Search = () => {
         };
     }, [search, hiddenFlag]);
 
-    const handleSearch = (event) => {
+    const handleSearch = (event: any) => {
         dispatch(setSearch(event.target.value));
         if (!event.target.value) {
             dispatch(setSearch(''));

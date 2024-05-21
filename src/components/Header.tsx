@@ -1,4 +1,5 @@
 import { ReactComponent as Profile } from '../assets/profile.svg';
+import React from 'react';
 
 export const Header = () => {
     return (

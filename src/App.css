@@ -205,6 +205,15 @@ th label,
   border-radius: 8px;
 }
 
+
+.nothing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  font-size: 48px;
+}
+
 .header_left {
   color: rgba(13, 90, 220, 1);
   cursor: pointer;

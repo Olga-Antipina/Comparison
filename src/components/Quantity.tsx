@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setQuantity } from "../store/controls/controls-actions";
 import { selectQuantityAllPhones } from "../store/phones/phones-selectors";
 import { selectQuantity } from "../store/controls/controls-selectors";
+import React from 'react';
 
 
 export const Quantity = () => {
@@ -9,11 +10,11 @@ export const Quantity = () => {
     const quantityAllPhones = useSelector((state) => selectQuantityAllPhones(state));
     const quantity = useSelector((state) => selectQuantity(state));
 
-    const handleClick = (event) => {
+    const handleClick = (event: any) => {
         dispatch(setQuantity(event.target.value));
         const specifications = document.querySelectorAll('.specification');
         specifications.forEach((el) => el.classList.remove('hidden_specification'));
-        const checkbox = document.querySelector('#comparison');
+        const checkbox = document.querySelector('#comparison') as any;
         checkbox.checked = false;
     };
 

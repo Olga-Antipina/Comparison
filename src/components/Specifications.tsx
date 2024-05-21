@@ -6,6 +6,7 @@ import { HiddenPhones } from './HiddenPhones';
 import { ReactComponent as True } from '../assets/true.svg';
 import { ReactComponent as False } from '../assets/false.svg';
 import { ReactComponent as Chevron } from '../assets/chevron_small.svg';
+import React from 'react';
 
 
 export const Specifications = () => {
@@ -15,12 +16,12 @@ export const Specifications = () => {
     const hiddenFlag = useSelector(selectHiddenFlag);
     const quantityAllPhones = useSelector((state) => selectQuantityAllPhones(state));
 
-    const clickHiddenPhones = (event) => {
+    const clickHiddenPhones = (event: any) => {
         dispatch(setHiddenFlag(hiddenFlag));
         dispatch(setVisibleValue(event.currentTarget.value));
-        const withComponent = document.querySelectorAll('.withComponent');
-        const forModal = document.querySelector('.for_modal');
-        withComponent.forEach((el) => {
+        const withComponent = document.querySelectorAll('.withComponent') as any;
+        const forModal = document.querySelector('.for_modal') as HTMLElement;
+        withComponent.forEach((el: any) => {
             if (el.nextSibling === event.currentTarget) {
                 el.append(forModal);
                 forModal.classList.remove('hidden_modal');
@@ -30,7 +31,7 @@ export const Specifications = () => {
     };
 
     const checkComparison = () => {
-        const checkbox = document.querySelector('#comparison');
+        const checkbox = document.querySelector('#comparison') as any;
         const specifications = document.querySelectorAll('.specification');
         if (!!checkbox.checked) {
             specifications.forEach((el) => {
@@ -62,7 +63,7 @@ export const Specifications = () => {
                             <input type='checkbox' id="comparison" onChange={checkComparison} />
                             <label htmlFor="comparison">Показать различия</label>
                         </th>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <th className='col_phones' key={item.name}>
                                 <img src={item.img} alt={item.name} className='phone_img' />
                                 {phones.visiblePhones.length !== quantityAllPhones
@@ -80,61 +81,61 @@ export const Specifications = () => {
                 <tbody>
                     <tr className='specification'>
                         <td className='row_name'>ПРОИЗВОДИТЕЛЬ</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={item.company}>{item.company}</td>
                         })}
                     </tr>
                     <tr className='specification'>
                         <td className='row_name'>ГОД РЕЛИЗА</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={item.release}>{item.release}</td>
                         })}
                     </tr>
                     <tr className='specification'>
                         <td className='row_name'>ДИАГОНАЛЬ ЭКРАНА (ДЮЙМ)</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={item.diagonal}>{item.diagonal}</td>
                         })}
                     </tr>
                     <tr className='specification'>
                         <td className='row_name'>СТРАНА-ПРОИЗВОДИТЕЛЬ</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={item.country}>{item.country}</td>
                         })}
                     </tr>
                     <tr className='specification'>
                         <td className='row_name'>ОБЪЁМ ПАМЯТИ</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={item.storage}>{item.storage}</td>
                         })}
                     </tr>
                     <tr className='specification'>
                         <td className='row_name'>ЧАСТОТА ОБНОВЛЕНИЯ ЭКРАНА</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={item.refresh}>{item.refresh}</td>
                         })}
                     </tr>
                     <tr className='specification'>
                         <td className='row_name'>NFC</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={String(item.NFC)}>{item.NFC ? <True /> : <False />}</td>
                         })}
                     </tr>
                     <tr className='specification'>
                         <td className='row_name'>ПОДДЕРЖКА ESIM</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={String(item.ESIM)}>{item.ESIM ? <True /> : <False />}</td>
                         })}
                     </tr>
                     <tr className='specification'>
                         <td className='row_name'>ПОДДЕРЖКА БЕСПРОВОДНОЙ ЗАРЯДКИ</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={String(item.wirelessCharging)}>{item.wirelessCharging ? <True /> : <False />}</td>
                         })}
                     </tr>
                     <tr className='specification'>
                         <td className='row_name'>СТОИМОСТЬ</td>
-                        {phones.visiblePhones.map((item) => {
+                        {phones.visiblePhones.map((item: any) => {
                             return <td className='padding_td' key={item.name} abbr={item.cost}>{item.cost}</td>
                         })}
                     </tr>
